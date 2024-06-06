@@ -1,0 +1,172 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "com.example.demo.controller.GCSController",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1322970774 { 
+   	label=example
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_134842393 { 
+   	label=demo
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   GCSController2030510442[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GCSController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   gcsdocumentstorage: GCSDocumentStorageService [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   gcsservice: GCSDocumentRetrievalService [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ fetchAllDocuments(): ResponseEntity&lt;List&lt;String&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ fetchDocuments(documentWrapper: DocumentWrapper): ResponseEntity&lt;List&lt;String&gt;&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ gcsStoreDocument(file: MultipartFile): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ retrieveDocument(metadata: Metadata): String</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GCSDocumentRetrievalServiceImpl2037268997[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GCSDocumentRetrievalServiceImpl</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   bucketName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   storage: Storage [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- downloadDocument(blob: Blob): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ downloadDocumentContent(blobName: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- generateCombinedKey(metadata: Map&lt;String, String&gt;): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- generateCombinedKey(documentKey: Metadata): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getBlobNameFromMetadata(metadata: Metadata): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ retrieveDocuments(documentWrapper: DocumentWrapper): List&lt;String&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GCSDocumentStorageServiceImpl2037268997[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GCSDocumentStorageServiceImpl</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ gCSDocumentStore(file: MultipartFile): String</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Metadata1748365275[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Metadata</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   key1: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   key2: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   key3: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ entrySet(): Entry&lt;String, String&gt;[]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+GCSController2030510442 -> GCSDocumentRetrievalServiceImpl2037268997[arrowhead=none];
+GCSController2030510442 -> GCSDocumentStorageServiceImpl2037268997[arrowhead=none];
+GCSDocumentRetrievalServiceImpl2037268997 -> Metadata1748365275[label="getBlobNameFromMetadata() -> entrySet()"];
+    
+}
+@enduml

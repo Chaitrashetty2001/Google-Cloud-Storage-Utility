@@ -1,0 +1,27 @@
+{
+  "groups": [
+    {
+      "name": "gcs",
+      "type": "com.example.demo.dto.GcsConfig",
+      "sourceType": "com.example.demo.dto.GcsConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "gcs.bucket-name",
+      "type": "java.lang.String",
+      "sourceType": "com.example.demo.dto.GcsConfig"
+    },
+    {
+      "name": "gcs.project-id",
+      "type": "java.lang.String",
+      "sourceType": "com.example.demo.dto.GcsConfig"
+    },
+    {
+      "name": "gcs.service-account-key-file-path",
+      "type": "java.lang.String",
+      "sourceType": "com.example.demo.dto.GcsConfig"
+    }
+  ],
+  "hints": []
+}
